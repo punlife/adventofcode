@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
 
@@ -23,6 +23,10 @@
 
     <ItemGroup>
       <ProjectReference Include="..\AdventOfCode2024\AdventOfCode2024.csproj" />
+      <ProjectReference Include="..\AdventOfCode2025\AdventOfCode2025.csproj" />
+      <ProjectReference Include="..\Source\AdventOfCode2023\AdventOfCode2023.csproj" />
+      <ProjectReference Include="..\Source\AdventOfCode2024\AdventOfCode2024.csproj" />
+      <ProjectReference Include="..\Source\AdventOfCode2025\AdventOfCode2025.csproj" />
     </ItemGroup>
 
 </Project>

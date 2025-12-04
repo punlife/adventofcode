@@ -23,7 +23,6 @@ public class Day3 : Day
                 
                 var a = int.Parse(valueArray[0]);
                 var b = int.Parse(valueArray[1]);
-                Console.WriteLine($"{a}*{b}");
                 sum += a * b;
             }
         }
@@ -52,7 +51,6 @@ public class Day3 : Day
                 
                 var a = int.Parse(valueArray[0]);
                 var b = int.Parse(valueArray[1]);
-                Console.WriteLine($"{a}*{b}");
                 sum += a * b;
             }
         }
@@ -74,7 +72,6 @@ public class Day3 : Day
                 {
                     active = false;
                     newInstructions.Add(substring.ToString());
-                    Console.WriteLine(substring.ToString());
                     substring.Clear();
                     continue;
                 }
@@ -84,7 +81,6 @@ public class Day3 : Day
                     if (active)
                     {
                         newInstructions.Add(substring.ToString());
-                        Console.WriteLine(substring.ToString());
                     }
                     
                     active = true;
@@ -95,7 +91,6 @@ public class Day3 : Day
                 if (index == stringValue.Length - 1 && active)
                 {
                     newInstructions.Add(substring.ToString());
-                    Console.WriteLine(substring.ToString());
                 }
             }
             

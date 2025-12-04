@@ -2,38 +2,46 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
       <None Remove="Data\Day1.txt" />
-      <Content Include="Data\Day1.txt">
+      <Content Include="Data2024\Day1.txt">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
       <None Remove="Data\Day1Test.txt" />
-      <Content Include="Data\Day1Test.txt">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="Data\Day2Test.txt" />
-      <Content Include="Data\Day2Test.txt">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="Data\Day2.txt" />
-      <Content Include="Data\Day2.txt">
+      <Content Include="Data2024\Day2.txt">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
       <None Remove="Data\Day3Test.txt" />
-      <Content Include="Data\Day3Test.txt">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="Data\Day3.txt" />
-      <Content Include="Data\Day3.txt">
+      <Content Include="Data2024\Day3.txt">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
       <None Remove="Data\Day3Test2.txt" />
-      <Content Include="Data\Day3Test2.txt">
+      <None Remove="Data\Day4Test.txt" />
+      <None Remove="Data\Day4.txt" />
+      <Content Include="Data2024\Day4.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="TestData2024\Day1.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="TestData2024\Day2.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="TestData2024\Day3.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="TestData2024\Day3Test2.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="TestData2024\Day4.txt">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
     </ItemGroup>

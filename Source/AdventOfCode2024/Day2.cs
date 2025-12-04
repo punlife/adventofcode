@@ -140,7 +140,7 @@ public class Day2 : Day
             {
                 sb.Append(character + " ");
             }
-            Console.WriteLine($"Unsafe:{sb}");
+            // Console.WriteLine($"Unsafe:{sb}");
             return 0;
         }
         

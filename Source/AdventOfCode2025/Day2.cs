@@ -1,7 +1,9 @@
-﻿using System.Text.Json;
+﻿using System.Globalization;
+using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
 using AdventOfCode2025;
+using CsvHelper;
 
 namespace AdventOfCode2025;
 
@@ -9,14 +11,17 @@ public class Day2 : Day
 {
     public long RunTask1(string[] input)
     {
-        var csv = input[0].Split(",");
         var invalidCount = 0l;
-        foreach (var value in csv)
+        using var reader = new StringReader(input[0]);
+        using (var csvReader = new CsvReader(reader, CultureInfo.InvariantCulture))
         {
-            var idValues = value.Split('-');
-            var startId = long.Parse(idValues[0]);
-            var endId = long.Parse(idValues[1]);
-            invalidCount += CheckIds(startId, endId);
+            while (csvReader.Read())
+            {
+                var idValues = csvReader.GetField(0)?.Split('-');
+                var startId = long.Parse(idValues![0]);
+                var endId = long.Parse(idValues![1]);
+                invalidCount += CheckIds(startId, endId);
+            }
         }
 
         return invalidCount;
@@ -24,19 +29,18 @@ public class Day2 : Day
 
     public long RunTask2(string[] input)
     {
-        var csv = input[0].Split(",");
         var invalidCount = 0l;
-        var invalidArray = new List<long>();
-        foreach (var value in csv)
-        {
-            var idValues = value.Split('-');
-            var startId = long.Parse(idValues[0]);
-            var endId = long.Parse(idValues[1]);
-            var currentInvalidIds = CheckIds2(startId, endId);
-            invalidArray.AddRange(currentInvalidIds);
-        }
 
-        return invalidArray.Sum();
+        using var reader = new StringReader(input[0]);
+        using var csvReader = new CsvReader(reader, CultureInfo.InvariantCulture);
+        while (csvReader.Read())
+        {
+            var idValues = csvReader.GetField(0)?.Split('-');
+            var startId = long.Parse(idValues![0]);
+            var endId = long.Parse(idValues![1]);
+            invalidCount += CheckIds2(startId, endId);
+        }
+        return invalidCount;
     }
 
     private long CheckIds(long currentValue, long endValue)
@@ -45,23 +49,30 @@ public class Day2 : Day
         for (var i = currentValue; i <= endValue; i++)
         {
             var stringValue = i.ToString();
-            var stringLength =  stringValue.Length;
-            
-            var leftSide = stringValue.Substring(0, stringLength/2);
-            var rightSide = stringValue.Substring(stringLength/2);
+            var stringLength = stringValue.Length;
+            var halfStringLength = stringLength / 2;
 
-            if (leftSide.Equals(rightSide))
+            var charactersEqual = true;
+            for (var j = 0; j < halfStringLength; j++)
             {
-                invalidCount += i;
+                if (!stringValue[j].Equals(stringValue[halfStringLength + j]))
+                {
+                    charactersEqual = false;
+                    break;
+                }
+            }
+
+            if (charactersEqual)
+            {
+                invalidCount++;
             }
         }
 
         return invalidCount;
     }
-    
-    private List<long> CheckIds2(long currentValue, long endValue)
+
+    private long CheckIds2(long currentValue, long endValue)
     {
-        var invalidArray = new List<long>();
         var invalidCount = 0l;
         for (var i = currentValue; i <= endValue; i++)
         {
@@ -70,46 +81,46 @@ public class Day2 : Day
 
             if (anyFalseIds)
             {
-                invalidArray.Add(i);
+                Interlocked.Add(ref invalidCount, i);
             }
         }
 
-        return invalidArray;
+        ;
+
+        return invalidCount;
     }
 
     private bool CheckAllSubstrings(string value)
     {
         var valueLength = value.Length;
+        var factors = GetFactorsOfTheLength(valueLength);
+
         var strings = new Dictionary<string, int>();
-        var characterDictionary = new Dictionary<string, int>();
-        
-        void CheckSubstrings(string valueToCheck)
+        foreach (var factor in factors)
         {
-            var length = valueToCheck.Length;
-            for (var i = 0; i < length; i++) {
-                var substring = valueToCheck[..(i+1)];
+            var substringLength = factor == 1
+                ? factor
+                : valueLength / factor;
+            for (var i = 0; i < valueLength; i += substringLength)
+            {
+                var substring = value.Substring(i, substringLength);
                 if (!strings.TryAdd(substring, 1))
                     strings[substring]++;
-            } 
+            }
         }
-        
-        foreach (var c in value)
-        {
-            if (!characterDictionary.TryAdd(c.ToString(), 1))
-                characterDictionary[c.ToString()]++;
-            
-        }
-        var leftSide = value.Substring(0, valueLength/2);
-        var rightSide = value.Substring(valueLength/2);
-        
-        CheckSubstrings(leftSide);
-        CheckSubstrings(rightSide);
 
-        var allSameCharacter = characterDictionary.Any(s => s.Value == valueLength);
-        
-        return allSameCharacter || strings
-            .Where(s => s.Key.Length * s.Value == valueLength)
-            .Any(s => s.Value > 1);
+        return strings.Any(s => s.Key.Length * s.Value == valueLength);
     }
-    
+
+    private List<int> GetFactorsOfTheLength(int length)
+    {
+        var factors = new List<int>();
+        for (var i = 1; i < length; i++)
+        {
+            if (length % i == 0)
+                factors.Add(i);
+        }
+
+        return factors;
+    }
 }

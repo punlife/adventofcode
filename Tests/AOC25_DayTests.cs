@@ -1,8 +1,4 @@
-using Day = AdventOfCode2025.Day;
-using Day1 = AdventOfCode2025.Day1;
-using Day2 = AdventOfCode2025.Day2;
-using Day3 = AdventOfCode2025.Day3;
-using Day4 = AdventOfCode2025.Day4;
+using AdventOfCode2025;
 
 namespace Tests;
 
@@ -30,6 +26,7 @@ public class Aoc25Tests
         new object[] { new Day1(), 3, 6 },
         new object[] { new Day2(), 1227775554, 4174379265 },
         new object[] { new Day3(), 357, 3121910778619 },
-        new object[] { new Day4(), 13, 43 }
+        new object[] { new Day4(), 13, 43 },
+        new object[] { new Day5(), 3, 14 }
     };
 }

@@ -39,7 +39,7 @@ class Program
 
     static PerformanceStatistics RunPerformanceTestForTask(Action taskToRun)
     {
-        var runCount = 100;
+        var runCount = 10;
         var times = new List<long>();
         var maxTime = 0l;
         var minTime = long.MaxValue;
@@ -66,16 +66,12 @@ class Program
         };
     }
     
-    static List<Day> GetDayList() => [new Day1(), new Day2(), new Day3(), new Day4()];
-
+    static List<Day> GetDayList() => [new Day1(), new Day2(), new Day3(), new Day4(), new Day5()];
+    
     static string[] GetTestDataPath(string name)
     {
         var path = Path.Combine(Environment.CurrentDirectory, @"Data2025", $"{name}.txt");
         return File.ReadAllLines(path);
     }
-
-    static string OutputTime(TimeSpan duration)
-    {
-        return $"{duration.TotalMilliseconds}ms";
-    }
+    
 }

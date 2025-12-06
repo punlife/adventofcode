@@ -39,7 +39,7 @@ class Program
 
     static PerformanceStatistics RunPerformanceTestForTask(Action taskToRun)
     {
-        var runCount = 10;
+        var runCount = 100;
         var times = new List<long>();
         var maxTime = 0l;
         var minTime = long.MaxValue;
@@ -48,7 +48,7 @@ class Program
             var stopwatchTask = Stopwatch.StartNew();
             taskToRun.Invoke();
             stopwatchTask.Stop();
-            
+
             var currentTime = stopwatchTask.ElapsedMilliseconds;
             times.Add(currentTime);
             if (maxTime < currentTime)
@@ -66,7 +66,7 @@ class Program
         };
     }
     
-    static List<Day> GetDayList() => [new Day1(), new Day2(), new Day3(), new Day4(), new Day5()];
+    static List<Day> GetDayList() => [new Day1(), new Day2(), new Day3(), new Day4(), new Day5(), new Day6()];
     
     static string[] GetTestDataPath(string name)
     {

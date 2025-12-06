@@ -27,6 +27,7 @@ public class Aoc25Tests
         new object[] { new Day2(), 1227775554, 4174379265 },
         new object[] { new Day3(), 357, 3121910778619 },
         new object[] { new Day4(), 13, 43 },
-        new object[] { new Day5(), 3, 14 }
+        new object[] { new Day5(), 3, 14 },
+        new object[] { new Day6(), 4277556, 3263827 }
     };
 }
